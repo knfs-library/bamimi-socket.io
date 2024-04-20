@@ -41,36 +41,36 @@ module.exports = {
 const { createServer } = require('node:http');
 const config = require("/path/to/your-config")
 const socket = require("@knfs-tech/bamimi-socket.io")
-socket.io(server, config)
-
-const connection = (io, socket) => {
-  console.log("____Connection___")
-}
-
-socket.on(
-  '/abc', 
-  function (socket, next) {
-  	console.log("___Middleware 1 socket___")
-  	next()
-  }, 
-  function (socket, next) {
-  	console.log("___Middleware 2 socket___")
-  	next()
-  }, 
-  function (socket, next) {
-  	console.log("___Middleware 3 socket___-")
-  	next()
-  }, 
-  connection
-)
-
-//Case using Express
 const express = require("express");
 const app = express();
 const server = createServer(app);
 
-server.listen(config.server.port, () => {
-	console.log(`server running at http://localhost:${config.server.port}`);
+socket.io(server, config)
+
+
+const connection = (io, socket) => {
+	console.log("____Connection___")
+}
+
+socket.on(
+	'/abc',
+	function (socket, next) {
+		console.log("___Middleware 1 socket___")
+		next()
+	},
+	function (socket, next) {
+		console.log("___Middleware 2 socket___")
+		next()
+	},
+	function (socket, next) {
+		console.log("___Middleware 3 socket___-")
+		next()
+	},
+	connection
+)
+
+server.listen(3001, () => {
+	console.log(`server running at http://localhost:3001`);
 })
 ```
 **Step 3**: Run file *index.js*
