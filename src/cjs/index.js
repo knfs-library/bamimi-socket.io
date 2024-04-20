@@ -4,10 +4,7 @@ const { Server } = require('socket.io');
  * Class representing the core functionality of the application.
  */
 class CORE {
-	/**
-	 * The Socket.IO server instance.
-	 * @var {Server} _socket
-	 */
+	// The Socket.IO server instance.
 	static _socket = null;
 
 	/**
@@ -19,11 +16,15 @@ class CORE {
 	 * @returns {Server} The Socket.IO server instance.
 	 */
 	static io(server, config) {
-		if (!CORE._socket) {
-			CORE._socket = new Server(server, config);
+		try {
+			if (!CORE._socket) {
+				CORE._socket = new Server(server, config);
+			}
+			return CORE._socket;
+		} catch (error) {
+			console.error('Error initializing Socket.IO server:', error);
+			throw error;
 		}
-
-		return CORE._socket;
 	}
 
 	/**
@@ -35,28 +36,37 @@ class CORE {
 	 * @returns {void}
 	 */
 	static on(path, ...middlewares) {
-		for (let i = 0; i < middlewares.length; i++) {
-			if (middlewares.length - 1 === i) {
-				CORE._socket.of(path).on('connection', (socket) => {
-					console.log("ip: " + socket.request.connection.remoteAddress);
-					console.log("user-agent: " + socket.request.headers['user-agent']);
-					console.log('user connected');
-
-					middlewares[i](CORE._socket, socket);
-
-					socket.on('disconnect', () => {
+		try {
+			for (let i = 0; i < middlewares.length; i++) {
+				if (middlewares.length - 1 === i) {
+					CORE._socket.of(path).on('connection', (socket) => {
 						console.log("ip: " + socket.request.connection.remoteAddress);
 						console.log("user-agent: " + socket.request.headers['user-agent']);
-						console.log('user disconnected');
+						console.log('user connected');
+
+						try {
+							middlewares[i](CORE._socket, socket);
+						} catch (error) {
+							console.error('Error executing middleware:', error);
+						}
+
+						socket.on('disconnect', () => {
+							console.log("ip: " + socket.request.connection.remoteAddress);
+							console.log("user-agent: " + socket.request.headers['user-agent']);
+							console.log('user disconnected');
+						});
 					});
-				});
 
-				return;
+					return;
+				}
+
+				CORE._socket.of(path).use(middlewares[i]);
 			}
-
-			CORE._socket.of(path).use(middlewares[i]);
+		} catch (error) {
+			console.error('Error attaching middleware:', error);
+			throw error;
 		}
 	}
-};
+}
 
-module.exports = CORE
+module.exports = CORE;

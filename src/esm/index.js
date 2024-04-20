@@ -4,9 +4,7 @@ import { Server } from 'socket.io';
  * Class representing the core functionality of the application.
  */
 export default class CORE {
-	/**
-	 * The Socket.IO server instance.
-	 */
+	// The Socket.IO server instance.
 	static _socket = null;
 
 	/**
@@ -18,11 +16,16 @@ export default class CORE {
 	 * @returns {Server} The Socket.IO server instance.
 	 */
 	static io(server, config) {
-		if (!CORE._socket) {
-			CORE._socket = new Server(server, config);
-		}
+		try {
+			if (!CORE._socket) {
+				CORE._socket = new Server(server, config);
+			}
 
-		return CORE._socket;
+			return CORE._socket;
+		} catch (error) {
+			console.error('Error initializing Socket.IO server:', error);
+			throw error;
+		}
 	}
 
 	/**
@@ -36,24 +39,39 @@ export default class CORE {
 	static on(path, ...middlewares) {
 		for (let i = 0; i < middlewares.length; i++) {
 			if (middlewares.length - 1 === i) {
-				CORE._socket.of(path).on('connection', (socket) => {
-					console.log("ip: " + socket.request.connection.remoteAddress);
-					console.log("user-agent: " + socket.request.headers['user-agent']);
-					console.log('user connected');
-
-					middlewares[i](CORE._socket, socket);
-
-					socket.on('disconnect', () => {
+				try {
+					CORE._socket.of(path).on('connection', (socket) => {
+						// Log connection details
 						console.log("ip: " + socket.request.connection.remoteAddress);
 						console.log("user-agent: " + socket.request.headers['user-agent']);
-						console.log('user disconnected');
+						console.log('user connected');
+
+						// Execute the last middleware function
+						middlewares[i](CORE._socket, socket);
+
+						// Listen for disconnect event
+						socket.on('disconnect', () => {
+							// Log disconnection details
+							console.log("ip: " + socket.request.connection.remoteAddress);
+							console.log("user-agent: " + socket.request.headers['user-agent']);
+							console.log('user disconnected');
+						});
 					});
-				});
+				} catch (error) {
+					console.error('Error attaching middleware to namespace:', error);
+					throw error;
+				}
 
 				return;
 			}
 
-			CORE._socket.of(path).use(middlewares[i]);
+			// Apply middlewares to the specified namespace
+			try {
+				CORE._socket.of(path).use(middlewares[i]);
+			} catch (error) {
+				console.error('Error applying middleware to namespace:', error);
+				throw error;
+			}
 		}
 	}
 }
