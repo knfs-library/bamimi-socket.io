@@ -1,8 +1,10 @@
-![alt]("https://github.com/knfs-jsc/bamimi-socket.io/blob/master/docs/images/logo-background.png")
+<p align="center">
+  <img width="250" src="https://github.com/knfs-jsc/bamimi-socket.io/blob/master/docs/images/logo-background.png?raw=true">
+  <br>
+</p>
 
+<h1> <span style="color:#013C4D;">About</span> <span style="color:#2B7F84;">Bamimi socket.io</span></h1>
 
----
-# Introduction
 
 This package was developed to make using sockets easier because:
  * Using router-like implementation in Express makes it easy for you to develop
@@ -10,14 +12,14 @@ This package was developed to make using sockets easier because:
  
 ---
 
-# Install
+## Install
 ```bash
 npm i @knfs-tech/bamimi-socket.io
 #or
 yarn add @knfs-tech/bamimi-socket.io
 ```
 
-# Usage
+## Usage
 
 **Step 1**: Create file *config.js*
 ```js
@@ -42,24 +44,24 @@ const socket = require("@knfs-tech/bamimi-socket.io")
 socket.io(server, config)
 
 const connection = (io, socket) => {
-	console.log("____Connection___")
+  console.log("____Connection___")
 }
 
 socket.on(
-	'/abc', 
-	function (socket, next) {
-		console.log("___Middleware 1 socket___")
-		next()
-	}, 
-	function (socket, next) {
-		console.log("___Middleware 2 socket___")
-		next()
-	}, 
-	function (socket, next) {
-		console.log("___Middleware 3 socket___-")
-		next()
-	}, 
-	connection
+  '/abc', 
+  function (socket, next) {
+  	console.log("___Middleware 1 socket___")
+  	next()
+  }, 
+  function (socket, next) {
+  	console.log("___Middleware 2 socket___")
+  	next()
+  }, 
+  function (socket, next) {
+  	console.log("___Middleware 3 socket___-")
+  	next()
+  }, 
+  connection
 )
 
 //Case using Express
@@ -80,8 +82,13 @@ node index.js
 yarn start
 ```
 
-# Author
+## Author
 * [Khapu](https://github.com/khapu9260)
   
-# Owner
+## Owner
 * [Knfs.,jsc](https://github.com/knfs-jsc)
+
+
+## License
+
+Bamimi is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

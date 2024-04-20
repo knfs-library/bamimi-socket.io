@@ -1,6 +1,6 @@
 {
   "name": "@knfs-tech/bamimi-socket.io",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simplify socket usage",
   "main": "./dist/index.js.cache.js",
   "scripts": {
