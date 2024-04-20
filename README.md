@@ -1,4 +1,4 @@
-![alt]("https://raw.githubusercontent.com/knfs-jsc/bamimi-socket.io/master/docs/images/logo-background.png")
+![alt]("https://github.com/knfs-jsc/bamimi-socket.io/blob/master/docs/images/logo-background.png")
 
 
 ---
