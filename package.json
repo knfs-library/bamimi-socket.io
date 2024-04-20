@@ -1,0 +1,32 @@
+{
+  "name": "@knfs-tech/bamimi-socket.io",
+  "version": "1.0.0",
+  "description": "Simplify socket usage",
+  "main": "./dist/index.js.cache.js",
+  "scripts": {
+    "build": "npx ncc build ./src -o ./dist --v8-cache -m",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knfs-jsc/bamimi-socket.io"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1"
+  },
+  "keywords": [
+    "socket",
+    "socket.io",
+    "realtime",
+    "bamimi"
+  ],
+  "author": "Kent Phung",
+  "license": "MIT"
+}
