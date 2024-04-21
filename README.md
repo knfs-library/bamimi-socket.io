@@ -83,7 +83,7 @@ yarn start
 ```
 
 ## Author
-* [Khapu](https://github.com/khapu9260)
+* [Kent Phung](https://github.com/khapu9260)
   
 ## Owner
 * [Knfs.,jsc](https://github.com/knfs-jsc)
