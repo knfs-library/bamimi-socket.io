@@ -13,6 +13,8 @@ This package was developed to make using sockets easier because:
 ---
 
 ## Install
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io?ref=badge_shield)
+
 ```bash
 npm i @knfs-tech/bamimi-socket.io
 #or
@@ -92,3 +94,5 @@ yarn start
 ## License
 
 Bamimi is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io?ref=badge_large)
