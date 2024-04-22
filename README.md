@@ -1,6 +1,9 @@
 <p align="center">
   <img width="250" src="https://github.com/knfs-jsc/bamimi-socket.io/blob/master/docs/images/logo-background.png?raw=true">
   <br>
+	<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io?ref=badge_shield&issueType=license" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io.svg?type=shield&issueType=license"/></a>
+	<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io?ref=badge_shield&issueType=security" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fknfs-jsc%2Fbamimi-socket.io.svg?type=shield&issueType=security"/></a>
+	<img src="https://scrutinizer-ci.com/g/knfs-jsc/bamimi-socket.io/badges/build.png?b=master" alt="Build Status" />
 </p>
 
 <h1> <span style="color:#013C4D;">About</span> <span style="color:#2B7F84;">Bamimi socket.io</span></h1>
